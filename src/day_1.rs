@@ -4,10 +4,10 @@ pub struct ListsInput {
     left_list: Vec<i32>,
 }
 
-pub fn assigment_1_a(file_contents: String) -> i32 {
+pub fn assigment_1_a(file_contents: &str) -> i32 {
     compute_differences(&split_input_into_lists(&file_contents))
 }
-pub fn assigment_1_b(file_contents: String) -> i32 {
+pub fn assigment_1_b(file_contents: &str) -> i32 {
     count_occurrences(&split_input_into_lists(&file_contents))
 }
 
@@ -90,6 +90,6 @@ mod tests {
 1   3
 3   9
 3   3".to_string();
-        assert_eq!(assigment_1_a(test_input), 11);
+        assert_eq!(assigment_1_a(&test_input), 11);
     }
 }
