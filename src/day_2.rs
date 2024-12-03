@@ -14,17 +14,16 @@ fn check_if_valid(chambers: &Vec<i32>) -> bool {
 }
 
 fn count_correct_layers(file_contents: &str)->i32{
-    let mut counter = 0 ;
-    for layer in file_contents.lines(){
-        let chambers: Vec<i32> = layer
-            .split_whitespace()
-            .filter_map(|s| s.parse::<i32>().ok())
-            .collect();
-        if check_if_valid(&chambers){
-            counter += 1;
-        }
-    }
-    counter
+    file_contents
+        .lines()
+        .filter(|layer| {
+            let chambers: Vec<i32> = layer
+                .split_whitespace()
+                .filter_map(|s| s.parse::<i32>().ok())
+                .collect();
+            check_if_valid(&chambers)
+        })
+        .count() as i32
 }
 
 pub fn assigment_2_a(file_contents: &str) -> i32 {
