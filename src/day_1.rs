@@ -1,3 +1,5 @@
+use std::fs;
+
 #[derive(Debug, PartialEq)]
 pub struct ListsInput {
     right_list: Vec<i32>,
@@ -7,6 +9,7 @@ pub struct ListsInput {
 pub fn assigment_1_a(file_contents: &str) -> i32 {
     compute_differences(&split_input_into_lists(&file_contents))
 }
+
 pub fn assigment_1_b(file_contents: &str) -> i32 {
     count_occurrences(&split_input_into_lists(&file_contents))
 }
@@ -64,13 +67,12 @@ mod tests {
     }
 
     #[test]
-    fn test_find_occurences(){
+    fn test_find_occurences() {
         let left_items = vec![1, 2, 3, 3, 3, 4];
         let right_items = vec![3, 3, 3, 4, 5, 9];
         let input_lists = ListsInput { right_list: right_items, left_list: left_items };
         let expected_total = 31;
         assert_eq!(count_occurrences(&input_lists), expected_total)
-
     }
 
     #[test]
@@ -91,5 +93,17 @@ mod tests {
 3   9
 3   3".to_string();
         assert_eq!(assigment_1_a(&test_input), 11);
+    }
+    #[test]
+    fn test_end_2_end_a() {
+        let file_contents = fs::read_to_string("input/assigment_1.txt")
+            .expect("LogRocket: Should have been able to read the file{}");
+        assert_eq!(assigment_1_a(&file_contents), 2264607);
+    }
+    #[test]
+    fn test_end_2_end_b() {
+        let file_contents = fs::read_to_string("input/assigment_1.txt")
+            .expect("LogRocket: Should have been able to read the file{}");
+        assert_eq!(assigment_1_b(&file_contents), 19457120);
     }
 }
