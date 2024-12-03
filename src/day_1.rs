@@ -1,4 +1,3 @@
-use std::fs;
 
 #[derive(Debug, PartialEq)]
 pub struct ListsInput {
@@ -51,6 +50,7 @@ fn split_input_into_lists(file_contents: &str) -> ListsInput {
 mod tests {
     // Note this useful idiom: importing names from outer (for mod tests) scope.
     use super::*;
+    use std::fs;
 
     #[test]
     fn test_create_lists() {

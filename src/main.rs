@@ -9,7 +9,7 @@ fn main() {
     println!("day_1_a answer is: {:?}",day_1::assigment_1_a(&day_1_contents));
     println!("day_1_b answer is: {:?}",day_1::assigment_1_b(&day_1_contents));
     let elapsed = now.elapsed();
-    println!("Elapsed: {:.2?}", elapsed);
+    println!("Time elapsed: {:.2?}", elapsed);
 }
 
 
