@@ -1,5 +1,20 @@
+fn checker(chambers: &Vec<i32>) -> bool {
+    if check_if_valid(&chambers){
+        return true;
+    }
+    else {
+        for i in 0..chambers.len() {
+            let mut reduced_chambers = chambers.clone();
+            reduced_chambers.remove(i);
+            if check_if_valid(&reduced_chambers) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
 
-fn check_if_valid(chambers: &Vec<i32>) -> bool {
+fn check_if_valid(chambers: &Vec<i32>)->bool {
     let mut chamber_iter = chambers.iter().peekable();
     let mut directions = Vec::new();
     while let Some(&current) = chamber_iter.next() {
@@ -25,11 +40,25 @@ fn count_correct_layers(file_contents: &str)->i32{
         })
         .count() as i32
 }
+fn count_correct_layers_safe(file_contents: &str)->i32{
+    file_contents
+        .lines()
+        .filter(|layer| {
+            let chambers: Vec<i32> = layer
+                .split_whitespace()
+                .filter_map(|s| s.parse::<i32>().ok())
+                .collect();
+            checker(&chambers)
+        })
+        .count() as i32
+}
 
 pub fn assigment_2_a(file_contents: &str) -> i32 {
     count_correct_layers(&file_contents)
 }
-
+pub fn assigment_2_b(file_contents: &str) -> i32 {
+    count_correct_layers_safe(&file_contents)
+}
 #[cfg(test)]
 mod tests {
     use std::fs;
@@ -98,4 +127,15 @@ mod tests {
         assert_eq!(assigment_2_a(&file_contents),total_count)
     }
 
+    #[test]
+    fn test_count_correct_lines_safe() {
+        let numbers = "7 6 4 2 1
+1 2 7 8 9
+9 7 6 2 1
+1 3 2 4 5
+8 6 4 4 1
+1 3 6 7 9";
+        let total_count = 4;
+        assert_eq!(count_correct_layers_safe(&numbers),total_count)
+    }
 }
