@@ -15,6 +15,7 @@ fn main() {
     println!("day_2_a answer is: {:?}", day_2::assigment_2_a(&day_2_contests));
     println!("day_2_b answer is: {:?}", day_2::assigment_2_b(&day_2_contests));
     println!("day_3_a answer is: {:?}", day_3::assigment_3_a(&day_3_contests));
+    println!("day_3_b answer is: {:?}", day_3::assigment_3_b(&day_3_contests));
     let elapsed = now.elapsed();
     println!("Time elapsed: {:.2?}", elapsed);
 }

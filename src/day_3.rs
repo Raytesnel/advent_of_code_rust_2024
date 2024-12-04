@@ -2,7 +2,7 @@ use regex::Regex;
 
 fn extract_mul_matches<F>(input: &str) -> Vec<String>
 {
-    let re = Regex::new(r"mul\(\d*,\d*\)|don\'t\(\)|do\(\)").unwrap();
+    let re = Regex::new(r"mul\(\d*,\d*\)|don't\(\)|do\(\)").unwrap();
     re.find_iter(input)
         .map(|mat| mat.as_str().to_string())
         .collect()
@@ -28,7 +28,7 @@ fn parse_mul_capture_with_check(item_list: Vec<String>) -> Vec<i32> {
                     results.push(x * y);
                 }
             }
-            _ => { println!(" a {:?} while do is in {:?}", item, do_enabled) }
+            _ => { /* println!(" a {:?} while do is in {:?}", item, do_enabled)*/ }
         }
     }
 
@@ -52,6 +52,11 @@ fn parse_mul_capture_default(item_list: Vec<String>) -> Vec<i32> {
     results
 }
 
+pub fn assigment_3_b(file_contents: &str) -> i32 {
+    let combined_input = file_contents.replace('\n', " ");
+    let matches = extract_mul_matches::<Vec<String>>(&combined_input);
+    parse_mul_capture_with_check(matches).iter().sum()
+}
 
 pub fn assigment_3_a(file_contents: &str) -> i32 {
     file_contents
@@ -87,6 +92,12 @@ mod tests {
         let expected_number = 161;
         assert_eq!(assigment_3_a(&stringy), expected_number)
     }
+    #[test]
+    fn test_3_b() {
+        let stringy = "xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))";
+        let expected_number = 48;
+        assert_eq!(assigment_3_b(&stringy), expected_number)
+    }
 
     #[test]
     fn test_e_2_e_day3_a() {
@@ -94,5 +105,13 @@ mod tests {
             .expect("LogRocket: Should have been able to read the file{}");
         let total_count = 164730528;
         assert_eq!(assigment_3_a(&file_contents), total_count)
+    }
+
+    #[test]
+    fn test_e_2_e_day3_b() {
+        let file_contents = fs::read_to_string("input/assigment_3.txt")
+            .expect("LogRocket: Should have been able to read the file{}");
+        let total_count = 70478672;
+        assert_eq!(assigment_3_b(&file_contents), total_count)
     }
 }
