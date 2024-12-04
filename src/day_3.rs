@@ -19,6 +19,8 @@ pub fn assigment_3_a(file_contents: &str) -> i32 {
 
 #[cfg(test)]
 mod tests {
+    use std::fs;
+
     // Note this useful idiom: importing names from outer (for mod tests) scope.
     use super::*;
 
@@ -30,9 +32,17 @@ mod tests {
     }
 
     #[test]
-    fn test_3_a(){
+    fn test_3_a() {
         let stringy = "xmul(2,4)%&mul[3,7]!@^do_not_mul(5,5)+mul(32,64]then(mul(11,8)mul(8,5))";
         let expected_number = 161;
-        assert_eq!(assigment_3_a(&stringy),expected_number)
+        assert_eq!(assigment_3_a(&stringy), expected_number)
+    }
+
+    #[test]
+    fn test_e_2_e_day3_a() {
+        let file_contents = fs::read_to_string("input/assigment_3.txt")
+            .expect("LogRocket: Should have been able to read the file{}");
+        let total_count = 164730528;
+        assert_eq!(assigment_3_a(&file_contents), total_count)
     }
 }
