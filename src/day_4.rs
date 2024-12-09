@@ -86,7 +86,7 @@ fn check_mas_in_block(block: &str, cordinate_x: &CoordinateX) -> usize {
 
     0 // Return 0 if fewer than 2 occurrences are found
 }
-fn found_x_in_block<F>(block: &str, char_to_find: &str, func_: F) -> usize
+fn found_char_in_block<F>(block: &str, char_to_find: &str, func_: F) -> usize
 where
     F: Fn(&str, &CoordinateX) -> usize,
 {
@@ -106,10 +106,10 @@ where
     counting
 }
 pub fn assigment_4_a(file_contents: &str)->i32{
-    found_x_in_block(&file_contents,"X",check_xmas_in_block) as i32
+    found_char_in_block(&file_contents, "X", check_xmas_in_block) as i32
 }
 pub fn assigment_4_b(file_contents: &str)->i32{
-    found_x_in_block(&file_contents,"A",check_mas_in_block) as i32
+    found_char_in_block(&file_contents, "A", check_mas_in_block) as i32
 }
 
 
@@ -219,7 +219,7 @@ MAMMMXMMMM
 MXMXAXMASX";
         let founds = 18;
 
-        assert_eq!(found_x_in_block(block,"X", check_xmas_in_block), founds);
+        assert_eq!(found_char_in_block(block, "X", check_xmas_in_block), founds);
     }
 
     #[test]
@@ -237,20 +237,20 @@ MAMMMXMMMM
 MXMXAXMASX";
         let founds = 9;
 
-        assert_eq!(found_x_in_block(block,"A", check_mas_in_block), founds);
+        assert_eq!(found_char_in_block(block, "A", check_mas_in_block), founds);
     }
     #[test]
     fn test_e2e_4_a(){
         let file_contents = fs::read_to_string("input/assigment_4.txt")
             .expect("LogRocket: Should have been able to read the file{}");
         let founds = 2507;
-        assert_eq!(found_x_in_block(&file_contents,"X", check_xmas_in_block), founds);
+        assert_eq!(found_char_in_block(&file_contents, "X", check_xmas_in_block), founds);
     }
     #[test]
     fn test_e2e_4_b(){
         let file_contents = fs::read_to_string("input/assigment_4.txt")
             .expect("LogRocket: Should have been able to read the file{}");
         let founds = 1969;
-        assert_eq!(found_x_in_block(&file_contents,"A", check_mas_in_block), founds);
+        assert_eq!(found_char_in_block(&file_contents, "A", check_mas_in_block), founds);
     }
 }
