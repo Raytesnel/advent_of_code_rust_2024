@@ -14,7 +14,7 @@ fn parse(input: &str) -> ListsInput {
         if line.is_empty() {
             break;
         }
-        let mut numbers: Vec<_> = line.split('|')
+        let numbers: Vec<_> = line.split('|')
             .map(|s| s.parse::<usize>().unwrap())
             .collect::<Vec<usize>>();
         let x: usize = numbers[0];
@@ -37,13 +37,13 @@ fn give_midle_number_if_correct(update: &Vec<usize>, rules: &Vec<Vec<usize>>) ->
     let mid = (update.len() - 1) / 2;
     Some(update[mid])
 }
-pub fn assigment_5_a(_input: &str) -> usize {
+pub fn assigment_5_a(_input: &str) -> i32 {
     let parsed_input = parse(_input);
     parsed_input.item_to_check
         .iter()
         .filter_map(|update| give_midle_number_if_correct(update, &parsed_input.rules))
         .sum::<usize>()
-        .into()
+        .try_into().expect("couldn't convert it")
 }
 
 #[cfg(test)]
@@ -116,14 +116,14 @@ fn check_2(update: &mut Vec<usize>, rules: &Vec<Vec<usize>>) -> usize {
     result
 }
 
-pub fn assigment_5_b(_input: &str) -> usize {
+pub fn assigment_5_b(_input: &str) -> i32 {
     let mut inputs = parse(_input);
     inputs.item_to_check
         .iter_mut()
         .filter(|update| give_midle_number_if_correct(update, &inputs.rules).is_none())
         .map(|mut update| check_2(&mut update, &inputs.rules))
         .sum::<usize>()
-        .into()
+        .try_into().expect("couldn't convert it")
 }
 
 // #[cfg(test)]
