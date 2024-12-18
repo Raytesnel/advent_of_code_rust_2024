@@ -6,27 +6,28 @@ mod day_2;
 mod day_3;
 mod day_4;
 mod day_5;
+mod day_6;
 
 fn main() {
     let inputs = [
         (
-            "input/assigment_1.txt",
+            "input/assignment_1.txt",
             vec![day_1::assigment_1_a, day_1::assigment_1_b],
         ),
         (
-            "input/assigment_2.txt",
+            "input/assignment_2.txt",
             vec![day_2::assigment_2_a, day_2::assigment_2_b],
         ),
         (
-            "input/assigment_3.txt",
+            "input/assignment_3.txt",
             vec![day_3::assigment_3_a, day_3::assigment_3_b],
         ),
         (
-            "input/assigment_4.txt",
+            "input/assignment_4.txt",
             vec![day_4::assigment_4_a, day_4::assigment_4_b],
         ),
         (
-            "input/assigment_5.txt",
+            "input/assignment_5.txt",
             vec![day_5::assigment_5_a, day_5::assigment_5_b],
         ),
     ];

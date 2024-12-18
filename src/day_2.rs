@@ -121,7 +121,7 @@ mod tests {
 
     #[test]
     fn test_e_2_e_day2_a(){
-        let file_contents = fs::read_to_string("input/assigment_2.txt")
+        let file_contents = fs::read_to_string("../input/assignment_2.txt")
             .expect("LogRocket: Should have been able to read the file{}");
         let total_count = 407;
         assert_eq!(assigment_2_a(&file_contents),total_count)

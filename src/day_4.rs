@@ -241,14 +241,14 @@ MXMXAXMASX";
     }
     #[test]
     fn test_e2e_4_a(){
-        let file_contents = fs::read_to_string("input/assigment_4.txt")
+        let file_contents = fs::read_to_string("../input/assignment_4.txt")
             .expect("LogRocket: Should have been able to read the file{}");
         let founds = 2507;
         assert_eq!(found_char_in_block(&file_contents, "X", check_xmas_in_block), founds);
     }
     #[test]
     fn test_e2e_4_b(){
-        let file_contents = fs::read_to_string("input/assigment_4.txt")
+        let file_contents = fs::read_to_string("../input/assignment_4.txt")
             .expect("LogRocket: Should have been able to read the file{}");
         let founds = 1969;
         assert_eq!(found_char_in_block(&file_contents, "A", check_mas_in_block), founds);

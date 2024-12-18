@@ -96,13 +96,13 @@ mod tests {
     }
     #[test]
     fn test_end_2_end_a() {
-        let file_contents = fs::read_to_string("input/assigment_1.txt")
+        let file_contents = fs::read_to_string("../input/assignment_1.txt")
             .expect("LogRocket: Should have been able to read the file{}");
         assert_eq!(assigment_1_a(&file_contents), 2264607);
     }
     #[test]
     fn test_end_2_end_b() {
-        let file_contents = fs::read_to_string("input/assigment_1.txt")
+        let file_contents = fs::read_to_string("../input/assignment_1.txt")
             .expect("LogRocket: Should have been able to read the file{}");
         assert_eq!(assigment_1_b(&file_contents), 19457120);
     }
